@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                git branch: 'main', url: 'https://github.com/classes-101/aravind-app.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'npm run build '
+            }
+        }
+        stage('ansible') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: 'dafb4a4e-1324-44bb-9696-9651ed4d60f2', disableHostKeyChecking: true, inventory: 'dev.inv', playbook: 'first.yml'
+            }
+        }
+    }
+}
