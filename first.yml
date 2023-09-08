@@ -1,0 +1,21 @@
+---
+- name: first playbook
+  hosts: all
+  become: yes
+  tasks:
+    - name: install http server
+      yum:
+        name: httpd
+        state: present
+    - name: start web server
+      service:
+        name: httpd
+        state: started
+    - name: copy the index.html files
+      copy:
+        src: /var/lib/jenkins/workspace/testansible/index.html
+        dest: /var/www/html/index.html
+    - name: restart web server
+      service:
+        name: httpd
+        state: restarted
