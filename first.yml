@@ -13,8 +13,8 @@
         state: started
     - name: copy the index.html files
       copy:
-        src: /var/lib/jenkins/workspace/testansible/index.html
-        dest: /var/www/html/index.html
+        src: /var/lib/jenkins/workspace/testansible/dist/aravind-app/*
+        dest: /var/www/html/
     - name: restart web server
       service:
         name: httpd
