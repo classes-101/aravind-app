@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Docker clean') {
             steps {
-                sh "'"sudo sh -c 'docker rmi $(sudo docker images -f "dangling=true" -q)'"'"
+                sh "docker system prune -af --volumes"
             }
         }
     }
