@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {     
     DOCKERHUB_CREDENTIALS= credentials('dockerlogin')
-    DOCKER_USER= jilu407
-    DOCKER_IMAGE= aravind-app
+    DOCKER_USER= 'jilu407'
+    DOCKER_IMAGE= 'aravind-app'
   }
     stages {
         stage('Docker') {
