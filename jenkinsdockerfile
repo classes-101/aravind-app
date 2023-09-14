@@ -1,7 +1,9 @@
 pipeline {
     agent any
     environment {     
-    DOCKERHUB_CREDENTIALS= credentials('dockerlogin')     
+    DOCKERHUB_CREDENTIALS= credentials('dockerlogin')
+    DOCKER_USER= jilu407
+    DOCKER_IMAGE= aravind-app
   }
     stages {
         stage('Docker') {
@@ -14,7 +16,13 @@ pipeline {
 	              sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
 	                   echo 'Login Completed'                
                 }           
-          } 
+          }
+           stage('Push Image to Docker Hub') {     
+             steps{  
+                 sh 'sudo docker push $DOCKER_USER/DOCKER_IMAGE:$BUILD_NUMBER'    
+                  echo 'Push Image Completed'      
+                        }           
+          }      
+      } 
         
     }
-}
