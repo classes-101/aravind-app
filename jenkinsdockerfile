@@ -1,16 +1,24 @@
 pipeline {
     agent any
-
+    environment {     
+    DOCKERHUB_CREDENTIALS= credentials('dockerlogin')     
+  }
     stages {
         stage('Docker') {
             steps {
                 sh "sudo docker build -t jilu407/aravind-app:$BUILD_NUMBER ."
             }
         }
-        stage('Docker clean') {
-            steps {
-                sh "sudo docker system prune -af --volumes"
-            }
-        }
+        stage('Login to Docker Hub') {    
+           steps{                            
+	              sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
+	                   echo 'Login Completed'                
+                }           
+          } 
+        #stage('Docker clean') {
+         #   steps {
+          #      sh "sudo docker system prune -af --volumes"
+           # }
+        #}
     }
 }
