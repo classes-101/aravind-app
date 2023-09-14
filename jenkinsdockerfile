@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Docker') {
             steps {
-                sh "sudo docker build -t jilu407/aravind-app ."
+                sh "sudo docker build -t jilu407/aravind-app:$BUILD_NUMBER ."
             }
         }
     }
