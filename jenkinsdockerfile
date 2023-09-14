@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Docker') {
+            steps {
+                sh "sudo docker build -t jilu407/aravind-app ."
+            }
+        }
+    }
+}
