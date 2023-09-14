@@ -15,10 +15,6 @@ pipeline {
 	                   echo 'Login Completed'                
                 }           
           } 
-        #stage('Docker clean') {
-         #   steps {
-          #      sh "sudo docker system prune -af --volumes"
-           # }
-        #}
+        
     }
 }
