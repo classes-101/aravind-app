@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Docker') {
             steps {
-                sh "sudo docker build -t jilu407/aravind-app:$BUILD_NUMBER ."
+                sh "sudo docker build -t $DOCKER_USER/$DOCKER_IMAGE:$BUILD_NUMBER ."
             }
         }
         stage('Login to Docker Hub') {    
